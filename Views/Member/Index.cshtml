@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Members";
+
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="display-4">@ViewData["Title"]  
+
+        </h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <a data-ajax="true" data-ajax-method="Get" data-ajax-url="/Member/MemberListPartial" data-ajax-update="#panel" class="btn btn-primary btn-sm">Reload</a>
+
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <div id="panel">
+
+        </div>
+   
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+
+}

@@ -1,0 +1,60 @@
+﻿@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+       
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col">
+       <a asp-action="Create" class="btn btn-primary" >+ New User</a>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Fullname</th>
+                    <th>Username</th>
+                    <th>Locked</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (UserViewModel user in Model)
+            {
+                <tr>
+                    <td>@user.NameSurname</td>
+                    <td>@user.Username</td>
+                    <td>
+                        @if (user.Locked)
+                        {
+                            <i class="fa fa-check text-success">True </i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-check text-danger"> False </i>
+                        }
+                    </td>
+                    <td>@user.Role</td>
+                    <td>@user.CreatedAt</td>
+
+                    <td>
+                        <a asp-action="Edit"  asp-route-id="@user.Id" class="btn btn-info">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@user.Id" onclick="return confirm('Are you are sure want to delete this user : @user.Username')" class="btn btn-danger">Remove</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>

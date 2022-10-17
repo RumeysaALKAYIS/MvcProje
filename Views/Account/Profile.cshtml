@@ -1,0 +1,101 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <h1 class="display-4 border-bottom text-center pb-2">@ViewData["Title"]</h1>
+
+    </div>
+</div>
+
+<div class="row mt-4">
+    @*Hatam mesaj bloğu*@
+    <div class="mb-6 offset-6">
+        <div asp-validation-summary="All" class="text-danger small"></div>
+    </div>
+
+
+    <div class="col-6">
+        <form method="post" asp-action="ProfileChangeImage" enctype="multipart/form-data">
+            <div class="text-center mb-3">
+                <img src="~/uploads/@ViewData["ProfileImageName"]" alt="user" />
+                <div class="form-group mb-3">
+                    <label class="form-label small " > Profile Image </label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+               
+                <div class="text-secondary">
+                    <span class="small">
+                        <i class="fa fa-info-circle me-2"> </i> Only png files
+                    </span>
+
+                </div>
+                <button class="btn btn-secondery" type="submit">Save</button>
+            </div>
+
+        </form>
+            
+        
+    </div>
+
+    <div class="col-6">
+        <div>
+            <h2>Settings</h2>
+            <hr />
+        </div>
+
+        <form method="post" asp-action="ProfileChangeUserName">
+            <div class="form-group">
+
+                <label class="form-check-label small"> New Username   </label>
+                <div class="input-group mb-3">
+                    <input name="username" type="text" class="form-control" placeholder="Name Doe" value="@ViewData["Username"]">
+                    <button class="btn btn-secondary" type="submit">Save</button>
+                </div>
+
+            </div>
+
+        </form>
+
+        <form method="post" asp-action="ProfileChangePassword">
+            <div class="form-group">
+                <label class="form-check-label small"> New  Password  </label>
+                <div class="input-group ">
+                  
+                    <input name="password" type="password" class="form-control" placeholder="P@ssw0rd">
+                    <button class="btn btn-secondary" type="submit">Save</button>
+                </div>
+
+             @*   @if (ViewData["ProfileChangePasswordResult"] != null && ViewData["ProfileChangePasswordResult"] == "PasswordChanged")
+                {
+                    <span class="text-success small ">  
+                        Password Updated
+                    </span>
+                }*@
+
+            </div>
+
+        </form> 
+            
+          
+
+           
+
+
+    </div>
+</div>
+
+@section Scripts{
+    @if (ViewData["ProfileChangePasswordResult"] != null)
+    {
+    <script>
+            toastr["info"]("Password Updated !!!", "PASSWORD");
+        </script>
+
+
+    }
+
+}
+    
